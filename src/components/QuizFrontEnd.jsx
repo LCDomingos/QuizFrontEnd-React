@@ -36,16 +36,16 @@ export default function QuizFrontEnd() {
     ];
 
     // Criando os objetos de estado
-    // currenteQuestion controla qual questão o usuário está
+    // "currenteQuestion", que é um número que representa qual pergunta o usuário está respondendo atualmente
     const [currenteQuestion, setCurrentQuestion] = useState(0);
-    // showScore controla se o jogo ja acabou ou não
+    // "showScore" booleano que indica se o quiz terminou ou não
     const [showScore, setShowScore] = useState(false);
     // showScore controla o placar final
     const [score, setScore] = useState(0);
 
     const [showAnswers, setShowAnswers] = useState(false);
 
-    //Funcção handleAnswerButtonClick é basicamente tudo que acontecerá assim que se clica no botão
+    //Funcção "handleAnswerButtonClick" é chamada quando o usuário clica em uma opção de resposta
     const handleAnswerButtonClick = (isCorrect) => {
       // vendo se está verdadeiro ou false, se for verdadeiro soma 1 ponto
       if(isCorrect){
@@ -53,6 +53,7 @@ export default function QuizFrontEnd() {
 
       }
       // Apenas pulando as questões, se estiver na 0 vai para a 1 se estiver na 1 vai p 2... Isso acontecerá enquanto o next question for menos que o tamanho do array questions
+      // verifica se ainda há mais perguntas a serem respondidas e atualiza o estado "currenteQuestion" ou "showScore" adequadamente.
       const nextQuestion = currenteQuestion + 1;
       if (nextQuestion < questions.length){
         setCurrentQuestion(nextQuestion);
@@ -62,27 +63,19 @@ export default function QuizFrontEnd() {
       }
 
     }
-
-
-    // -------------------------------------------------------------------------------------------------------
+    
     // Função para reiniciar o quiz
     const restartQuiz = () => {
-    // Reinicia a pergunta e o score e o showAnwers
+    // redefine os estados "currenteQuestion", "showScore" e "score" para seus valores iniciais
     setCurrentQuestion(0);
     setShowScore(false);
     setShowAnswers(false);
     setScore(0);
     };
 
-    // -------------------------------------------------------------------------------------------------------------
-
-
-
-
 
     return (
         <div className='QuizFrontEnd'>
-            {/* Aqui vamos mostrar o resultado final */}
             {/* quando o atributo do showScore for true vai ser rodado essa tela que mostra o resultado final */}
             {showScore ? (
               <>
